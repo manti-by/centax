@@ -1,0 +1,17 @@
+#.gitignore
+
+.venv/
+.idea/
+.vscode/
+.env
+
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.py[cod]
+*$py.class
+
+docs/_build/
+
+.python-version
+db.sqlite
