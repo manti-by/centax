@@ -6,11 +6,9 @@
 #define DHTTYPE DHT11
 #define DHTTTHRESHOLD 11
 
+#define SSID "Asgard"
+#define SENSOR_ID "CENTAX-03"
 #define SERVER_ADDRESS "http://192.168.1.100/api/v1/sensors/"
-#define SENSOR_ID "CENTAX-01"
-
-#define SSID "Wallhall"
-#define PSWD ""
 
 /***
   For working with a faster than ATmega328p 16 MHz chip, like an ESP8266,
@@ -24,24 +22,25 @@ DHT dht(DHTPIN, DHTTYPE, DHTTTHRESHOLD);
 void setup() {
   Serial.begin(115200);
 
-  Serial.println();
   Serial.print("[WIFI] Connecting to ");
   Serial.println(SSID);
 
   WiFi.mode(WIFI_STA);
-  WiFi.begin(SSID, PSWD);
+  WiFi.begin(SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println(WiFi.status());
+    delay(500);
+    Serial.print(".");
   }
-
+  Serial.println("");
   Serial.println("[WIFI] Connected");
-  Serial.println("[WIFI] IP address: ");
+
+  Serial.print("[WIFI] IP address: ");
   Serial.println(WiFi.localIP());
 
   Serial.println("[DHT] Begin connection");
   dht.begin();
+  Serial.println("[DHT] Connected");
 }
 
 void loop() {
@@ -56,13 +55,16 @@ void loop() {
       HTTPClient http;
 
       Serial.println("[HTTP] Begin request");
+      http.setReuse(true);
       http.begin(client, SERVER_ADDRESS);
       http.addHeader("Content-Type", "application/json");
 
       String payload = String("{\"sensor_id\":\"") + SENSOR_ID +
                        String("\",\"temp\":") + temp +
                        String(",\"humidity\":") + humidity + String("}");
+
       int httpCode = http.POST(payload);
+
       if (httpCode > 0) {
         if (httpCode == HTTP_CODE_OK) {
           const String& payload = http.getString();
@@ -70,12 +72,23 @@ void loop() {
           Serial.println(payload);
           Serial.println(">>");
         } else {
-          Serial.printf("[HTTP] Error: %s\n", http.errorToString(httpCode).c_str());
+          Serial.print("[HTTP] Error: ");
+          Serial.println(httpCode);
         }
       }
 
+      Serial.print("[HTTP] Response code: ");
+      Serial.println(httpCode);
+
+      Serial.print("[HTTP] Text: ");
+      Serial.println(http.getString());
+
+      Serial.println("[HTTP] End request");
       http.end();
     }
+
+  } else {
+    Serial.print(".");
   }
 
   delay(5 * 60 * 1000);

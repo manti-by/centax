@@ -1,6 +1,8 @@
 # Centax IoT module
 
-[![License](https://img.shields.io/badge/license-BSD-blue.svg)](https://raw.githubusercontent.com/manti-by/Apollo/master/LICENSE)
+![ESP-01](https://img.shields.io/badge/ESP8266/ESP01-black.svg?style=for-the-badge)
+![Arduino CLI](https://img.shields.io/badge/Arduino%20CLI-%2300979D.svg?style=for-the-badge&logo=Arduino&logoColor=white)
+[![License](https://img.shields.io/badge/Licence%20BSD-blue.svg?style=for-the-badge)](https://raw.githubusercontent.com/manti-by/Apollo/master/LICENSE)
 
 ## About
 
@@ -33,9 +35,10 @@ Requirements:
     make setup
     ```
 
-4. Connect ESP01-S to a Programmer/Flasher, compile and upload a binary
+4. Connect ESP01-S to a Programmer/Flasher, set env, compile and upload a binary
 
     ```shell
+    export WIFI_PASSWORD=YOUR-WIFI-PASSWORD
     make compile
     make upload
     ```
