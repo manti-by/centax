@@ -7,8 +7,8 @@
 #define DHTTTHRESHOLD 11
 
 #define SSID "Asgard"
-#define SENSOR_ID "CENTAX-03"
-#define SERVER_ADDRESS "http://192.168.1.100/api/v1/sensors/"
+#define SENSOR_ID "CENTAX-05"
+#define SERVER_ADDRESS "http://192.168.1.100/api/v1/sensors/logs/"
 
 /***
   For working with a faster than ATmega328p 16 MHz chip, like an ESP8266,
