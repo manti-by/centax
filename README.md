@@ -15,7 +15,7 @@ Source link: https://github.com/manti-by/centax/
 Requirements:
 
 - ESP01-S module
-- DHT11 sensor [module](https://github.com/IOT-MCU/ESP-01S-DHT11-v1.0)
+- DHT22 sensor [module](https://github.com/IOT-MCU/ESP-01S-DHT11-v1.0)
 
 ## Setup Centax application
 
@@ -38,6 +38,7 @@ Requirements:
 4. Connect ESP01-S to a Programmer/Flasher, set env, compile and upload a binary
 
     ```shell
+    export SENSOR_ID=SENSOR-ID
     export WIFI_PASSWORD=YOUR-WIFI-PASSWORD
     make compile
     make upload

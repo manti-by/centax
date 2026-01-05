@@ -2,12 +2,11 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-#define DHTPIN 2
-#define DHTTYPE DHT11
-#define DHTTTHRESHOLD 11
+#define DHT_PIN 2
+#define DHT_TYPE DHT11
+#define DHT_THRESHOLD 11
 
 #define SSID "Asgard"
-#define SENSOR_ID "CENTAX-05"
 #define SERVER_ADDRESS "http://192.168.1.100/api/v1/sensors/logs/"
 
 /***
@@ -16,7 +15,7 @@
   You can do this by passing a 3rd parameter for this threshold.
   11 - is good for the ESP8266 processor on ESP-01.
 ***/
-DHT dht(DHTPIN, DHTTYPE, DHTTTHRESHOLD);
+DHT dht(DHT_PIN, DHT_TYPE, DHT_THRESHOLD);
 
 
 void setup() {
