@@ -3,7 +3,7 @@
 #include <ESP8266HTTPClient.h>
 
 #define DHT_PIN 2
-#define DHT_TYPE DHT11
+#define DHT_TYPE DHT22
 #define DHT_THRESHOLD 11
 
 #define SSID "Asgard"
